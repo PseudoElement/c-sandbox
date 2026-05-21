@@ -1,27 +1,32 @@
+// #include "ariphmetic.h"
+// #include "memory.h"
+#include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
-  int counter = 111;
-  float floatCounter = 1.22;
-  char symbol = "Z272323"[0];
-  int myNum = 25;
-  char email[] = "new-user@gmail.com";
+    struct SliceRes res = SliceString("Hello, world!", 2, 100);
+    PrintSliceRes(res);
 
-  double doubleNum = 19.99;
+    // main_ariphmetic();
+    // main_memory();
 
-  myNum++;
+    int counter = 111;
+    float floatCounter = 1.22;
+    char symbol = "Z272323"[0];
+    int myNum = 25;
+    char email[] = "new-user@gmail.com";
 
-  floatCounter += 1.66;
-  counter++;
+    double doubleNum = 19.99;
 
-  int x = 5, y = 6, z = 50;
-  printf("comma separated %d!\n", x + y + z);
+    myNum++;
 
-  printf("symbol %c!\n", symbol);
-  printf("float %.1f!\n", floatCounter);
-  printf("myNum log %d!\n", myNum % 4);
-  printf("email log %s!\n", email);
+    floatCounter += 1.66;
+    counter++;
 
-  return 0;
+    int x = 5, y = 6, z = 50;
+    printf("symbol %c!\n", symbol);
+    printf("float %.1f!\n", floatCounter);
+
+    return 0;
 }

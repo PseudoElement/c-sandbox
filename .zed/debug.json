@@ -1,0 +1,14 @@
+[
+  {
+    "label": "Debug naitve binary",
+    "build": {
+      "command": "gcc -g *.c -o bin/program && ./bin/program",
+      "args": [],
+      "hide": "always",
+      "cwd": "$ZED_WORKTREE_ROOT",
+    },
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/program",
+    "adapter": "CodeLLDB",
+  },
+]
