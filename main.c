@@ -1,15 +1,23 @@
-// #include "ariphmetic.h"
-// #include "memory.h"
-#include "utils.h"
+// #include "./includes/ariphmetic.h"
+// #include "./includes/memory.h"
+// #include "./includes/loops.h"
+#include "./includes/utils.h"
+// #include "includes/arrays.h"
+#include "includes/pointers.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
-    struct SliceRes res = SliceString("Hello, world!", 2, 100);
-    PrintSliceRes(res);
-
+    main_pointers();
+    // terminal_inputs();
+    // main_arrays();
+    // main_arrays();
+    // main_loops(-3);
     // main_ariphmetic();
     // main_memory();
+
+    struct SliceRes res = SliceString("Hello, world!", 2, 100);
+    // PrintSliceRes(res);
 
     int counter = 111;
     float floatCounter = 1.22;
@@ -25,8 +33,8 @@ int main() {
     counter++;
 
     int x = 5, y = 6, z = 50;
-    printf("symbol %c!\n", symbol);
-    printf("float %.1f!\n", floatCounter);
+    // printf("symbol %c!\n", symbol);
+    // printf("float %.1f!\n", floatCounter);
 
     return 0;
 }

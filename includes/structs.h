@@ -1,5 +1,5 @@
-#ifndef ARIPHMETIC_H
-#define ARIPHMETIC_H
+#ifndef STRUCTS_H
+#define STRUCTS_H
 
 // when create instance you need to write struct in the beginning
 struct Person {
@@ -20,9 +20,6 @@ typedef struct Point2 {
     int y;
 } Point2;
 
-// alias for type `int`
-typedef int my_int;
-
-int main_ariphmetic();
+int main_structs();
 
 #endif
