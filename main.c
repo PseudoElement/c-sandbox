@@ -3,12 +3,14 @@
 // #include "./includes/loops.h"
 #include "./includes/utils.h"
 // #include "includes/arrays.h"
-#include "includes/pointers.h"
+#include "includes/files.h"
+// #include "includes/pointers.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
-    main_pointers();
+    main_files("new_text_file.txt");
+    // main_pointers();
     // terminal_inputs();
     // main_arrays();
     // main_arrays();
