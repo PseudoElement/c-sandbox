@@ -1,6 +1,7 @@
 #include "includes/pointers.h"
 #include "includes/arrays.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int add(int a, int b) {
     printf("Result: %d\n", a + b);
@@ -15,27 +16,44 @@ int multiply(int a, int b) {
     return 5;
 }
 
-char *myFunc() {
+/**
+ * INVALID cause myArr is stored on stack allocated for this function scope
+ * and it's cleared when you leave a function block
+ */
+// int *createArray() {
+//     int myArr[5] = {11, 22, 33, 44, 55};
+//     return myArr;
+// }
+
+DynamicArr createArray() {
     int myArr[5] = {11, 22, 33, 44, 55};
-    return myArr;
+    int len = ARRAY_LENGTH(myArr);
+    int *arr = malloc(len * sizeof(int)); // Allocate on the heap
+    for (int i = 0; i < len; i++) {
+        arr[i] = myArr[i]; // Populate the array
+    }
+    DynamicArr res = {.ptr = arr, .size = len};
+    return res;
 }
 
 int main_pointers() {
     int (*funcs[3])(int, int) = {add, subtract, multiply};
     // funcs[0](22, 3345);
 
-    int *arr = myFunc();
-    int len = ARRAY_LENGTH(arr);
+    DynamicArr arr = createArray();
+    // int len = ARRAY_LENGTH(arr.ptr);
 
-    printf("ARR %d", arr[0]);
-    printf("ARR %d", arr[1]);
-    printf("ARR %d\n", arr[2]);
-    printf("LEN %d", len);
-    for (int i = 0; i < len; i++) {
-        if (i == len - 1) {
-            printf("idx_%d:%d\t", i, arr[i]);
+    // arr
+    printf("ARR %d\n", arr.ptr[0]);
+    printf("ARR %d\n", arr.ptr[1]);
+    printf("ARR %d\n", arr.ptr[2]);
+    printf("LEN %d\n", arr.size);
+
+    for (int i = 0; i < arr.size; i++) {
+        if (i == arr.size - 1) {
+            printf("idx_%d:%d\n\n", i, arr.ptr[i]);
         } else {
-            printf("idx_%d:%d\n", i, arr[i]);
+            printf("idx_%d:%d\n", i, arr.ptr[i]);
         }
     }
 
@@ -59,8 +77,7 @@ int main_pointers() {
         printf("%p\n", &myNumbers[i]);
     }
 
-    printf("&myNumbers[0] == &myNumbers: %d\n",
-           (void *)&myNumbers[0] == (void *)&myNumbers);
+    printf("&myNumbers[0] == &myNumbers: %d\n", (void *)&myNumbers[0] == (void *)&myNumbers);
 
     int *firstElPtr = &myNumbers[0];
     *myNumbers = 229;
