@@ -25,7 +25,7 @@ int multiply(int a, int b) {
 //     return myArr;
 // }
 
-DynamicArr createArray() {
+DynamicArr mockArray() {
     int myArr[5] = {11, 22, 33, 44, 55};
     int len = ARRAY_LENGTH(myArr);
     int *arr = malloc(len * sizeof(int)); // Allocate on the heap
@@ -40,8 +40,7 @@ int main_pointers() {
     int (*funcs[3])(int, int) = {add, subtract, multiply};
     // funcs[0](22, 3345);
 
-    DynamicArr arr = createArray();
-    // int len = ARRAY_LENGTH(arr.ptr);
+    DynamicArr arr = mockArray();
 
     // arr
     printf("ARR %d\n", arr.ptr[0]);
