@@ -68,3 +68,6 @@ dkms.conf
 #Compile
 main
 memory
+/bin
+/build
+/build-debug

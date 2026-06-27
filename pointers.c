@@ -1,5 +1,5 @@
-#include "includes/pointers.h"
-#include "includes/arrays.h"
+#include "include/pointers.h"
+#include "include/arrays.h"
 #include <stdio.h>
 #include <stdlib.h>
 

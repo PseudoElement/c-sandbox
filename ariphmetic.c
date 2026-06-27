@@ -1,4 +1,4 @@
-#include "./includes/ariphmetic.h"
+#include "./include/ariphmetic.h"
 #include <stdbool.h>
 #include <stdio.h>
 

@@ -1,5 +1,5 @@
-#include "./includes/files.h"
-#include "includes/arrays.h"
+#include "./include/files.h"
+#include "include/arrays.h"
 #include <stdbool.h>
 #include <stdio.h>
 

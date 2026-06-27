@@ -1,4 +1,4 @@
-#include "./includes/structs.h"
+#include "./include/structs.h"
 #include <stdio.h>
 
 const char RELAY_API_KEY[10] = "2233123123";

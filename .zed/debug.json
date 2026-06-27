@@ -1,14 +1,26 @@
 [
-  {
-    "label": "Debug naitve binary",
-    "build": {
-      "command": "gcc -g *.c -o bin/program && ./bin/program",
-      "args": [],
-      "hide": "always",
-      "cwd": "$ZED_WORKTREE_ROOT",
-    },
-    "request": "launch",
-    "program": "$ZED_WORKTREE_ROOT/program",
-    "adapter": "CodeLLDB",
-  },
+	{
+		"label": "Debug GCC",
+		"build": {
+			"command": "gcc -g *.c -o bin/program",
+			"args": [],
+			"hide": "always",
+			"cwd": "$ZED_WORKTREE_ROOT",
+		},
+		"request": "launch",
+		"program": "$ZED_WORKTREE_ROOT/bin/program",
+		"adapter": "CodeLLDB",
+	},
+	{
+		"label": "Debug CMake with external libs",
+		"build": {
+			"command": "make -C build-debug",
+			"args": [],
+			"hide": "always",
+			"cwd": "$ZED_WORKTREE_ROOT",
+		},
+		"request": "launch",
+		"program": "$ZED_WORKTREE_ROOT/build-debug/c-sandbox",
+		"adapter": "CodeLLDB",
+	},
 ]
