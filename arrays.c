@@ -1,5 +1,5 @@
 #include "include/arrays.h"
-// #include "build/_deps/collections-c-src/src/include/cc_array.h"
+#include "build/_deps/collections-c-src/src/include/cc_array.h"
 // #include "build/_deps/collections-c-src/src/include/cc_common.h"
 #include <stdio.h>
 #include <string.h>
@@ -16,38 +16,40 @@ int main_arrays() {
     // CC_Array *ar;
     // cc_array_new(&ar);
 
-    // CC_Array *arWithCap;
-    // CC_ArrayConf const conf = {.capacity = 3, .exp_factor = (float)(3), .mem_alloc = arWithCap};
-    // enum cc_stat status = cc_array_new_conf(&conf, &arWithCap);
-    // if (status != CC_OK) {
-    //     printf("!!!ERROR: %ud\n", status);
-    //     exit(1);
-    // }
-    // printf("CAPACITY: %ld\n", cc_array_capacity(arWithCap));
-    // printf("SIZE: %ld\n", cc_array_size(arWithCap));
+    CC_Array *arWithCap;
+    CC_ArrayConf const conf = {.capacity = 3, .exp_factor = (float)(3), .mem_alloc = malloc, .mem_calloc = calloc, .mem_free = free};
+    enum cc_stat status = cc_array_new_conf(&conf, &arWithCap);
+    if (status != CC_OK) {
+        printf("!!!ERROR: %ud\n", status);
+        exit(1);
+    }
+    printf("CAPACITY: %ld\n", cc_array_capacity(arWithCap));
+    printf("SIZE: %ld\n", cc_array_size(arWithCap));
 
-    // int el = 228;
-    // cc_array_add(arWithCap, &el);
-    // int el2 = 329;
-    // cc_array_add(arWithCap, &el2);
-    // int el3 = 430;
-    // cc_array_add(arWithCap, &el3);
+    int el = 228;
+    cc_array_add(arWithCap, &el);
+    int el2 = 329;
+    cc_array_add(arWithCap, &el2);
+    int el3 = 430;
+    cc_array_add(arWithCap, &el3);
     int el4 = 531;
-    // cc_array_add(arWithCap, &el4);
+    cc_array_add(arWithCap, &el4);
 
-    // for (int i = 0; i < cc_array_size(ar); i++) {
-    //     int *el;
-    //     cc_array_get_at(ar, i, (void *)&el);
-    //     printf("HELLO_DYNAMIC_ARRAY_DATA %d\n", *el);
-    //     printf("CAPACITY: %ld\n", cc_array_capacity(ar));
-    //     printf("SIZE: %ld\n\n", cc_array_size(ar));
-    // }
+    for (int i = 0; i < cc_array_size(arWithCap); i++) {
+        int *el;
+        cc_array_get_at(arWithCap, i, (void *)&el);
+        printf("HELLO_DYNAMIC_ARRAY_DATA %d\n", *el);
+        printf("CAPACITY: %ld\n", cc_array_capacity(arWithCap));
+        printf("SIZE: %ld\n\n", cc_array_size(arWithCap));
+    }
 
     int arr[] = {10, 20, 30, 40};
     int len = ARRAY_LENGTH(arr);
 
     matrix2D[0][1] = 99;
     matrix3D[0][2][3] = 990;
+
+    printf("SUM_TOTAL: %d\n", *(arr) + arr[2]);
 
     printf("arr size -> %zu\n", sizeof(arr));
 

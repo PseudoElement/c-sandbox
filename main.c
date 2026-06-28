@@ -2,17 +2,19 @@
 // #include "./include/memory.h"
 // #include "./include/loops.h"
 #include "./include/utils.h"
-#include "include/arrays.h"
+// #include "include/arrays.h"
 // #include "include/files.h"
-#include "include/pointers.h"
+#include "include/functions.h"
+// #include "include/pointers.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
+    main_funcs();
     // main_files("new_text_file.txt");
-    main_pointers();
+    // main_pointers();
     // terminal_inputs();
-    main_arrays();
+    // main_arrays();
     // main_arrays();
     // main_loops(-3);
     // main_ariphmetic();
