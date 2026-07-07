@@ -20,6 +20,13 @@ typedef struct Point2 {
     int y;
 } Point2;
 
+// nested struct
+
+typedef struct {
+    Point2 point2;
+    char value[];
+} NestedStruct;
+
 int main_structs();
 
 #endif

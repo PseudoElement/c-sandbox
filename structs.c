@@ -13,12 +13,17 @@ int main_structs() {
     Point point = {.x = 11, .y = 20};
     Point2 point2 = {.x = 11, .y = 20};
     struct Point2 _point2 = {.x = 11, .y = 20};
-
     person.age = 22;
-
     float ratio = person.salary / 10;
-
     printf("ratio %f\n", ratio);
+
+    char dynamicStr[] = "";
+    dynamicStr[0] = '9';
+
+    NestedStruct nested = {.point2 = point2};
+
+    printf("nested.value: %s\n", nested.value);
+    printf("dynamicStr: %s\n", dynamicStr);
 
     printf("END OF main_structs\n\n");
 

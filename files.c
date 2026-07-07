@@ -5,19 +5,18 @@
 
 void main_files(char fileName[]) {
     /* writeonly mode(w+ is read/write) */
-    FILE *fptr = fopen(fileName, "w");
-    fprintf(fptr, "sintol_borow");
-    fprintf(fptr, "\n\nappended text");
-    fclose(fptr);
+    FILE *fptr = fopen(fileName, "w+");
+    fprintf(fptr, "appended text\n\n");
+    fprintf(fptr, "more added text");
 
-    /* append+read mode */
-    fptr = fopen(fileName, "r");
+    /* change opened file mode from writing to reading without reopening  */
+    // rewind(fptr);
+    fseek(fptr, 0, SEEK_SET);
+    // fseek(fptr, 100, SEEK_END);
 
-    char myString[5];
-    char *hasContent;
-    while (hasContent != NULL) {
-        hasContent = fgets(myString, ARRAY_LENGTH(myString), fptr);
-        printf("myString - %s\t", myString);
+    char myString[10];
+    while (fgets(myString, ARRAY_LENGTH(myString), fptr)) {
+        printf("myString - %s\n", myString);
     }
 
     fclose(fptr);

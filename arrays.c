@@ -8,7 +8,10 @@ char email[] = {"2123123"};
 char email2[] = "2313";
 char email3[] = {'2', '2', '3', '4', '2'};
 
-int matrix2D[2][3] = {{1, 4, 2}, {3, 6, 8}};
+int matrix2D[2][3] = {
+    {1, 4, 2},
+    {3, 6, 8}
+};
 int matrix3D[2][3][4] = {{{1, 4, 2}}, {{3, 6, 8}}};
 
 int main_arrays() {
