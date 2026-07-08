@@ -3,9 +3,9 @@
 
 // when create instance you need to write struct in the beginning
 struct Person {
-    short age;
-    char name[50];
-    float salary;
+    char name[50]; // 50 byte (aligned from biggest to smallest size)
+    float salary;  // 4 byte
+    short age;     // 2 byte
 };
 
 // no struct word needed on creation

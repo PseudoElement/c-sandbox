@@ -1,5 +1,6 @@
 #include "include/arrays.h"
 #include "build/_deps/collections-c-src/src/include/cc_array.h"
+#include "include/utils.h"
 // #include "build/_deps/collections-c-src/src/include/cc_common.h"
 #include <stdio.h>
 #include <string.h>

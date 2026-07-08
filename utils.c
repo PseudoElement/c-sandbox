@@ -41,6 +41,8 @@ void PrintSliceRes(struct SliceRes res) {
     printf("Success:  %s\n\n", res.success ? "true" : "false");
 }
 
+/*------------------------------------------STRINGS----------------------------------------------*/
+
 DynamicString dynamic_string(char initialValue[]) {
     DynamicString res;
     res.len = strlen(initialValue);
@@ -73,7 +75,7 @@ void append_to_string(DynamicString *dynamicString, char *appendedValue) {
     } else {
         int newLen = (dynamicString->len + appendedSize);
         int newCap = newLen * 2;
-        char *newPtr = realloc(dynamicString->ptr, newCap);
+        char *newPtr = realloc(dynamicString->ptr, newCap * sizeof(char));
         if (newPtr == NULL) {
             printf("[ERROR:append_to_string] realloc failed.\n");
             exit(1);
@@ -112,25 +114,98 @@ void prepend_to_string(DynamicString *dynamicString, char *prependedValue) {
     dynamicString->ptr = newPtr;
 }
 
+/*------------------------------------------ARRAYS----------------------------------------------*/
+
+DynamicArray dynamic_array(DynamicArrayItem initialArr[], int len) {
+    DynamicArray arr = {0};
+    arr.len = len;
+    arr.cap = len * 2;
+    arr.ptr = malloc(arr.cap * sizeof(DynamicArrayItem));
+    for (int i = 0; i < len; i++) {
+        arr.ptr[i] = initialArr[i];
+    }
+    return arr;
+}
+
+void print_array(DynamicArray *dynamicArr) {
+    for (int i = 0; i < dynamicArr->len; i++) {
+        DynamicArrayItem item = dynamicArr->ptr[i];
+        switch (item.type) {
+        case INTEGER:
+            printf("%d_print_array_int: %d\n", i, item.value.intValue);
+            break;
+        case STRING:
+            printf("%d_print_array_string: %s\n", i, item.value.stringValue);
+            break;
+        case CHARACTER:
+            printf("%d_print_array_char: %c\n", i, item.value.charValue);
+            break;
+        case BOOLEAN:
+            printf("%d_print_array_bool: %ud\n", i, item.value.boolValue);
+            break;
+        default:
+            printf("[ERROR:print_array] unknown data type %c.\n", item.type);
+        }
+    }
+
+    printf("print_array: size - %d\n", dynamicArr->len);
+    printf("print_array: cap - %d\n", dynamicArr->cap);
+}
+
+void push_to_array(DynamicArray *dynamicArr, DynamicArrayItem newItem) {
+    if (dynamicArr->cap >= dynamicArr->len + 1) {
+        dynamicArr->ptr[dynamicArr->len] = newItem;
+        dynamicArr->len++;
+    } else {
+        int newLen = dynamicArr->len + 1;
+        int newCap = newLen * 2;
+        DynamicArrayItem *newArrPtr = realloc(dynamicArr->ptr, newCap * sizeof(DynamicArrayItem));
+        if (newArrPtr == NULL) {
+            printf("[ERROR:push_to_array] realloc failed.\n");
+            exit(1);
+        }
+        newArrPtr[newLen - 1] = newItem;
+        dynamicArr->ptr = newArrPtr;
+        dynamicArr->len = newLen;
+        dynamicArr->cap = newCap;
+    }
+}
+
 void main_utils() {
-    DynamicString str = dynamic_string("Hello"); // hello
-    append_to_string(&str, " 1st");
-    append_to_string(&str, " 2nd");
-    prepend_to_string(&str, "3th ");
+    // DynamicString str = dynamic_string("Hello"); // hello
+    // append_to_string(&str, " 1st");
+    // append_to_string(&str, " 2nd");
+    // prepend_to_string(&str, "3th ");
 
-    char str2[str.len];
-    strcpy(str2, str.ptr);
+    // char newValue[str.len];
+    // strcpy(newValue, str.ptr);
 
-    printf("str2: %s\n", str2);
-    printf("str2_len: %ld\n", strlen(str2));
+    // printf("DynamicString_size: %d\n", str.len);
+    // printf("DynamicString_cap: %d\n", str.cap);
+    // printf("DynamicString_ptr: %p\n", str.ptr);
+    // printf("DynamicString_value: %s\n", newValue);
 
-    char newValue[str.len];
-    strcpy(newValue, str.ptr);
+    // free(str.ptr);
 
-    printf("DynamicString_size: %d\n", str.len);
-    printf("DynamicString_cap: %d\n", str.cap);
-    printf("DynamicString_ptr: %p\n", str.ptr);
-    printf("DynamicString_value: %s\n", newValue);
+    DynamicArrayItem initialArr[] = {
+        {.value = {.intValue = 15}, .type = INTEGER},
+        {.value = {.intValue = 20}, .type = INTEGER},
+    };
+    DynamicArray arr = dynamic_array(initialArr, ARRAY_LENGTH(initialArr));
 
-    free(str.ptr);
+    DynamicArrayItem newValues[] = {
+        {.value = {.intValue = 90},  .type = INTEGER},
+        {.value = {.intValue = 100}, .type = INTEGER},
+        {.value = {.intValue = 110}, .type = INTEGER},
+        {.value = {.intValue = 120}, .type = INTEGER},
+        {.value = {.intValue = 130}, .type = INTEGER},
+        {.value = {.intValue = 140}, .type = INTEGER},
+        {.value = {.intValue = 150}, .type = INTEGER},
+    };
+    for (int i = 0; i < ARRAY_LENGTH(newValues); i++) {
+        DynamicArrayItem item = newValues[i];
+        push_to_array(&arr, item);
+    }
+
+    print_array(&arr);
 }

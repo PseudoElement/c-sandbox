@@ -5,9 +5,9 @@ const char RELAY_API_KEY[10] = "2233123123";
 
 int main_structs() {
     struct Person person = {
-        45,
         "bimba",
         228.88,
+        45,
     };
 
     Point point = {.x = 11, .y = 20};
