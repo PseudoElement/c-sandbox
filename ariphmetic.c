@@ -51,6 +51,21 @@ int main_ariphmetic() {
         printf("default callded\n");
     }
 
+    float a, b, c;
+    /**
+     * works similar like parseFloat()
+     */
+    char source[] = "129.11hello";
+    sscanf(source, "%f", &a);
+    printf("sscanf: %.2f\n", a);
+
+    /**
+     * scans strings, ints and floats from stdin
+     */
+    printf("INPUT FLOAT:\n");
+    int res = scanf("%f", &b);
+    printf("scanf: %f\n", b);
+
     printf("END OF main_ariphmetic\n\n");
 
     return 0;

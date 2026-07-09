@@ -1,4 +1,5 @@
 #include "./include/utils.h"
+#include <errno.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -105,7 +106,7 @@ void prepend_to_string(DynamicString *dynamicString, char *prependedValue) {
         dynamicString->len = newLen;
     }
     if (newPtr == NULL) {
-        printf("[ERROR:prepend_to_string] malloc failed.\n");
+        printf("[ERROR:prepend_to_string]: %s\n", strerror(errno));
         exit(1);
     }
     strcpy(newPtr, prependedValue);
@@ -161,7 +162,8 @@ void push_to_array(DynamicArray *dynamicArr, DynamicArrayItem newItem) {
         int newCap = newLen * 2;
         DynamicArrayItem *newArrPtr = realloc(dynamicArr->ptr, newCap * sizeof(DynamicArrayItem));
         if (newArrPtr == NULL) {
-            printf("[ERROR:push_to_array] realloc failed.\n");
+            // perror() logs an error message of last thrown error
+            perror("[ERROR:push_to_array] realloc failed");
             exit(1);
         }
         newArrPtr[newLen - 1] = newItem;
@@ -207,5 +209,5 @@ void main_utils() {
         push_to_array(&arr, item);
     }
 
-    print_array(&arr);
+    // print_array(&arr);
 }

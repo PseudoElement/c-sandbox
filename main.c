@@ -1,6 +1,7 @@
-// #include "./include/ariphmetic.h"
+#include "./include/ariphmetic.h"
 // #include "./include/memory.h"
 // #include "./include/loops.h"
+#include "include/time.h"
 #include "include/utils.h"
 // #include "include/structs.h"
 // #include "include/arrays.h"
@@ -18,10 +19,11 @@ int main() {
     // main_arrays();
     // main_arrays();
     // main_loops(-3);
-    // main_ariphmetic();
+    main_ariphmetic();
     // main_memory();
     // main_structs();
     main_utils();
+    main_time();
 
     // struct SliceRes res = SliceString("Hello, world!", 2, 100);
     // PrintSliceRes(res);
